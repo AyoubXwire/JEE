@@ -1,0 +1,11 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "https://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+    <bean id="ClientController" class="cigma.controllers.ClientController" scope="singleton">
+        <property name="clientService" ref="ClientService" />
+    </bean>
+    <bean id="ClientService" class="cigma.service.ClientService" scope="singleton">
+        <property name="clientRepository" ref="ClientRepository" />
+    </bean>
+    <bean id="ClientRepository" class="cigma.repositories.ClientRepository" scope="singleton"/>
+</beans>

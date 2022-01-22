@@ -1,14 +1,14 @@
 package cigma.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class Client {
 
-    public long id;
-    public String name;
+    private long id;
+    private String name;
 
-    public Client() {}
-
-    public Client(long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
 }

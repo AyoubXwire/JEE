@@ -1,11 +1,19 @@
 package cigma.service;
 
 import cigma.models.Client;
-import cigma.repositories.ClientRepository;
+import cigma.repositories.IClientRepository;
 
 public class ClientService implements IClientService {
 
-    ClientRepository clientRepository = new ClientRepository();
+    IClientRepository clientRepository;
+
+    public void setClientRepository(IClientRepository clientRepository) {
+        this.clientRepository = clientRepository;
+    }
+
+    public ClientService() {
+        System.out.println("ClientService instanciated");
+    }
 
     @Override
     public Client save(Client c) {

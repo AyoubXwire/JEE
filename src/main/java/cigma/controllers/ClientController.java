@@ -1,11 +1,19 @@
 package cigma.controllers;
 
 import cigma.models.Client;
-import cigma.service.ClientService;
+import cigma.service.IClientService;
 
 public class ClientController {
 
-    ClientService clientService = new ClientService();
+    IClientService clientService;
+
+    public void setClientService(IClientService clientService) {
+        this.clientService = clientService;
+    }
+
+    public ClientController() {
+        System.out.println("ClientController instanciated");
+    }
 
     public Client save(Client c ){
         System.out.println("ClientController level...");
