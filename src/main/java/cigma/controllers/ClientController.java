@@ -12,7 +12,7 @@ public class ClientController {
     }
 
     public ClientController() {
-        System.out.println("ClientController instanciated");
+        System.out.println("ClientController..");
     }
 
     public Client save(Client c){
