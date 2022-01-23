@@ -12,12 +12,31 @@ public class ClientService implements IClientService {
     }
 
     public ClientService() {
-        System.out.println("ClientService instanciated");
+        System.out.println("ClientService..");
     }
 
     @Override
     public Client save(Client c) {
-        System.out.println("Service Layer : ClientService Level... ");
         return clientRepository.save(c);
+    }
+
+    @Override
+    public Client update(Client c) {
+        return clientRepository.update(c);
+    }
+
+    @Override
+    public Client delete(long id) {
+        return clientRepository.delete(id);
+    }
+
+    @Override
+    public Client find(long id) {
+        return clientRepository.find(id);
+    }
+
+    @Override
+    public Client findAll() {
+        return clientRepository.findAll();
     }
 }
