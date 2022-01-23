@@ -12,6 +12,6 @@ public class Application {
         ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
         ClientController ctrl = (ClientController) context.getBean("ClientController");
 
-        ctrl.save(new Client(1L,"testing"));
+        ctrl.save(new Client(1L,"testing", 10));
     }
 }
