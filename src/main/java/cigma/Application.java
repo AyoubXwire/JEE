@@ -7,7 +7,9 @@ import cigma.models.Facture;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Application {
 
@@ -15,15 +17,25 @@ public class Application {
 
         ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
 
-        ClientController clientCtrl = (ClientController) context.getBean("ClientController");
-        FactureController factureCtrl = (FactureController) context.getBean("FactureController");
+        ClientController clientController = (ClientController) context.getBean("ClientController");
+        FactureController factureController = (FactureController) context.getBean("FactureController");
 
-        //clientCtrl.save(new Client("Ayoub"));
-        //clientCtrl.update(new Client("Benabid"));
-        //clientCtrl.find(1L);
-        //clientCtrl.findAll();
-        //clientCtrl.delete(1);
+        Client client = new Client("Ayoub");
 
-        //factureCtrl.save(new Facture(new Date(), 20));
+
+        List<Facture> f = new ArrayList<>();
+        f.add(new Facture(new Date(), 10, client));
+        f.add(new Facture(new Date(), 20, client));
+
+        client.setFactures(f);
+
+        clientController.save(client);
+
+        //clientController.update(new Client("Benabid"));
+        //clientController.find(1L);
+        //clientController.findAll();
+        //clientController.delete(1);
+
+        //factureController.save(new Facture(new Date(), 20));
     }
 }

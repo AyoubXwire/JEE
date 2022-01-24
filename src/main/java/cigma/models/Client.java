@@ -3,6 +3,7 @@ package cigma.models;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -12,14 +13,17 @@ import javax.persistence.*;
 @Table(name = "clients")
 public class Client {
 
+    public Client(String name) {
+        this.name = name;
+    }
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "full_name")
     private String name;
 
-    public Client(String name) {
-        this.name = name;
-    }
+    @OneToMany(mappedBy = "client", cascade = CascadeType.PERSIST)
+    private List<Facture> factures;
 
 }

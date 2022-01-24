@@ -13,6 +13,12 @@ import java.util.Date;
 @Table(name = "factures")
 public class Facture {
 
+    public Facture(Date date, double amount, Client client) {
+        this.date = date;
+        this.amount = amount;
+        this.client = client;
+    }
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
@@ -22,9 +28,8 @@ public class Facture {
     @Column(name = "amount")
     private double amount;
 
-    public Facture(Date date, double amount) {
-        this.date = date;
-        this.amount = amount;
-    }
+    @ManyToOne
+    @JoinColumn(name = "id_client")
+    private Client client;
 
 }
