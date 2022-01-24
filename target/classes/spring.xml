@@ -8,4 +8,13 @@
         <property name="clientRepository" ref="ClientRepository" />
     </bean>
     <bean id="ClientRepository" class="cigma.repositories.ClientRepository" scope="singleton"/>
+
+
+    <bean id="FactureController" class="cigma.controllers.FactureController" scope="singleton">
+        <property name="factureService" ref="FactureService" />
+    </bean>
+    <bean id="FactureService" class="cigma.service.FactureService" scope="singleton">
+        <property name="factureRepository" ref="FactureRepository" />
+    </bean>
+    <bean id="FactureRepository" class="cigma.repositories.FactureRepository" scope="singleton"/>
 </beans>

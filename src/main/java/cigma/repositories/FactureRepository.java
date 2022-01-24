@@ -1,54 +1,54 @@
 package cigma.repositories;
 
-import cigma.models.Client;
+import cigma.models.Facture;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-public class ClientRepository implements IClientRepository {
+public class FactureRepository implements IFactureRepository {
 
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("unit_clients");
     EntityManager em = emf.createEntityManager();
 
-    public ClientRepository() {
-        System.out.println("ClientRepository..");
+    public FactureRepository() {
+        System.out.println("FactureRepository..");
     }
 
     @Override
-    public Client save(Client c) {
+    public Facture save(Facture f) {
         em.getTransaction().begin();
-        em.persist(c);
+        em.persist(f);
         em.getTransaction().commit();
         return null;
     }
 
     @Override
-    public Client update(Client c) {
+    public Facture update(Facture f) {
         em.getTransaction().begin();
-        em.merge(c);
+        em.merge(f);
         em.getTransaction().commit();
         return null;
     }
 
     @Override
-    public Client delete(long id) {
+    public Facture delete(long id) {
         em.getTransaction().begin();
-        String hql = "delete " + Client.class.getName() + " where id = :id";
+        String hql = "delete " + Facture.class.getName() + " where id = :id";
         Query query = em.createQuery(hql).setParameter("id", id);
         query.executeUpdate();
         return null;
     }
 
     @Override
-    public Client find(long id) {
-        return em.find(Client.class, id);
+    public Facture find(long id) {
+        return em.find(Facture.class, id);
     }
 
     @Override
-    public Client findAll() {
-        Query query = em.createQuery("SELECT * FROM clients");
-        return (Client) query.getResultList();
+    public Facture findAll() {
+        Query query = em.createQuery("SELECT * FROM factures");
+        return (Facture) query.getResultList();
     }
 }

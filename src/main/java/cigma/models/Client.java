@@ -18,7 +18,8 @@ public class Client {
     @Column(name = "full_name")
     private String name;
 
-    @Transient
-    private double amount;
+    public Client(String name) {
+        this.name = name;
+    }
 
 }
