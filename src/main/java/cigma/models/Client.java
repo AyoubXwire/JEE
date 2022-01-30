@@ -11,6 +11,9 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "clients")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "type")
+@DiscriminatorValue("client")
 public class Client {
 
     public Client(String name) {
