@@ -2,18 +2,14 @@ package cigma.controllers;
 
 import cigma.models.Facture;
 import cigma.service.IFactureService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
+@Controller("FactureController")
 public class FactureController {
 
+    @Autowired
     IFactureService factureService;
-
-    public void setFactureService(IFactureService factureService) {
-        this.factureService = factureService;
-    }
-
-    public FactureController() {
-        System.out.println("ClientController..");
-    }
 
     public Facture save(Facture c){
         return factureService.save(c);

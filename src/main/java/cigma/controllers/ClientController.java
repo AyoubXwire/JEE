@@ -2,18 +2,14 @@ package cigma.controllers;
 
 import cigma.models.Client;
 import cigma.service.IClientService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
+@Controller("ClientController")
 public class ClientController {
 
-    IClientService clientService;
-
-    public void setClientService(IClientService clientService) {
-        this.clientService = clientService;
-    }
-
-    public ClientController() {
-        System.out.println("ClientController..");
-    }
+    @Autowired
+    private IClientService clientService;
 
     public Client save(Client c){
         return clientService.save(c);

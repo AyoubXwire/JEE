@@ -2,30 +2,31 @@ package cigma.service;
 
 import cigma.models.Facture;
 import cigma.repositories.IFactureRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
+@Service
 public class FactureService implements IFactureService {
 
+    @Autowired
     IFactureRepository factureRepository;
 
-    public void setFactureRepository(IFactureRepository factureRepository) {
-        this.factureRepository = factureRepository;
-    }
-
-    public FactureService() {
-        System.out.println("FactureService..");
-    }
-
     @Override
+    @Transactional
     public Facture save(Facture c) {
         return factureRepository.save(c);
     }
 
     @Override
+    @Transactional
     public Facture update(Facture c) {
         return factureRepository.update(c);
     }
 
     @Override
+    @Transactional
     public Facture delete(long id) {
         return factureRepository.delete(id);
     }

@@ -1,43 +1,32 @@
 package cigma.repositories;
 
 import cigma.models.Client;
+import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
+import javax.persistence.*;
 
+@Repository
 public class ClientRepository implements IClientRepository {
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("unit_clients");
-    EntityManager em = emf.createEntityManager();
-
-    public ClientRepository() {
-        System.out.println("ClientRepository..");
-    }
+    @PersistenceContext
+    private EntityManager em;
 
     @Override
     public Client save(Client c) {
-        em.getTransaction().begin();
         em.persist(c);
-        em.getTransaction().commit();
         return null;
     }
 
     @Override
     public Client update(Client c) {
-        em.getTransaction().begin();
         em.merge(c);
-        em.getTransaction().commit();
         return null;
     }
 
     @Override
     public Client delete(long id) {
-        em.getTransaction().begin();
         String hql = "delete " + Client.class.getName() + " where id = :id";
         Query query = em.createQuery(hql).setParameter("id", id);
-        query.executeUpdate();
         return null;
     }
 

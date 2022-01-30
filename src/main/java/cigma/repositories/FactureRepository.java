@@ -1,43 +1,32 @@
 package cigma.repositories;
 
 import cigma.models.Facture;
+import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
+import javax.persistence.*;
 
+@Repository
 public class FactureRepository implements IFactureRepository {
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("unit_clients");
-    EntityManager em = emf.createEntityManager();
-
-    public FactureRepository() {
-        System.out.println("FactureRepository..");
-    }
+    @PersistenceContext
+    private EntityManager em;
 
     @Override
     public Facture save(Facture f) {
-        em.getTransaction().begin();
         em.persist(f);
-        em.getTransaction().commit();
         return null;
     }
 
     @Override
     public Facture update(Facture f) {
-        em.getTransaction().begin();
         em.merge(f);
-        em.getTransaction().commit();
         return null;
     }
 
     @Override
     public Facture delete(long id) {
-        em.getTransaction().begin();
         String hql = "delete " + Facture.class.getName() + " where id = :id";
         Query query = em.createQuery(hql).setParameter("id", id);
-        query.executeUpdate();
         return null;
     }
 
